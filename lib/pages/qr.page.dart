@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:funciona/pages/container.dart';
+import 'package:funciona/pages/login.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class QRPage extends StatelessWidget {
   final String data = "22.00506-4";
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +46,43 @@ class QRPage extends StatelessWidget {
                 ))
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.menu),
+              label: 'Home',
+              backgroundColor: Colors.blue),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.qr_code),
+              label: 'QRCode',
+              backgroundColor: Colors.blue),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.computer),
+              label: 'Notebooks',
+              backgroundColor: Colors.blue),
+        ],
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginPage()),
+            );
+          }
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => QRPage()),
+            );
+          }
+          if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ContainerPage()),
+            );
+          }
+        },
       ),
     );
   }

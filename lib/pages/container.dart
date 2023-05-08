@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:funciona/pages/login.dart';
+import 'package:funciona/pages/qr.page.dart';
 
 class ContainerPage extends StatefulWidget {
+  int _currentIndex = 0;
   @override
   _ContainerPageState createState() => _ContainerPageState();
 }
 
 class _ContainerPageState extends State<ContainerPage> {
+  int _currentIndex = 0;
   bool _notebookEmprestado = false;
 
   void _emprestarNotebook() {
@@ -57,6 +61,43 @@ class _ContainerPageState extends State<ContainerPage> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.menu),
+              label: 'Home',
+              backgroundColor: Colors.blue),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.qr_code),
+              label: 'QRCode',
+              backgroundColor: Colors.blue),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.computer),
+              label: 'Notebooks',
+              backgroundColor: Colors.blue),
+        ],
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginPage()),
+            );
+          }
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => QRPage()),
+            );
+          }
+          if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ContainerPage()),
+            );
+          }
+        },
       ),
     );
   }
