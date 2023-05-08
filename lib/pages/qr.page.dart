@@ -4,7 +4,7 @@ import 'package:funciona/pages/login.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class QRPage extends StatelessWidget {
-  final String data = "22.00506-4";
+  final String data = "teste";
   int _currentIndex = 0;
 
   @override
