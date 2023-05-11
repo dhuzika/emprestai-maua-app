@@ -13,6 +13,14 @@ class _LoginPageState extends State<LoginPage> {
   String? get username => _username;
   String? _password;
 
+  double _getFontSize(BuildContext context) {
+    // Obter o tamanho da tela do dispositivo
+    final Size screenSize = MediaQuery.of(context).size;
+
+    // Calcular o tamanho da fonte com base no tamanho da tela
+    return screenSize.width * 0.1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,10 +34,10 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(top: 0.0, bottom: 120.0),
+                padding: EdgeInsets.only(top: 0, bottom: 120.0),
                 child: Text(
                   'Emprestaí,\n    Mauá!',
-                  style: TextStyle(fontSize: 48.0),
+                  style: TextStyle(fontSize: _getFontSize(context)),
                 ),
               ),
               TextFormField(
@@ -41,6 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 textInputAction: TextInputAction.next,
                 onSaved: (value) => _username = value,
+                style: TextStyle(fontSize: _getFontSize(context)),
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(left: 16.0),
                     labelText: 'Login',
@@ -56,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
                 onSaved: (value) => _password = value,
+                style: TextStyle(fontSize: _getFontSize(context)),
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(left: 16.0, top: 16.0),
                     labelText: 'Senha',
@@ -75,7 +85,8 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     }
                   },
-                  child: Text('Entrar', style: TextStyle(fontSize: 22.5)),
+                  child: Text('Entrar',
+                      style: TextStyle(fontSize: _getFontSize(context))),
                   style: ButtonStyle(
                     minimumSize: MaterialStateProperty.all(Size(200, 50)),
                   )),
