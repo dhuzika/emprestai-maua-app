@@ -1,16 +1,29 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:funciona/pages/login.dart';
 import 'package:funciona/pages/qr.page.dart';
 
 class ContainerPage extends StatefulWidget {
   int _currentIndex = 0;
+
+  final String login;
+  final String data;
+
+  ContainerPage({required this.login}) : data = login;
+
   @override
-  _ContainerPageState createState() => _ContainerPageState();
+  _ContainerPageState createState() => _ContainerPageState(login: login);
 }
 
 class _ContainerPageState extends State<ContainerPage> {
   int _currentIndex = 0;
   bool _notebookEmprestado = false;
+
+  final String login;
+  final String data;
+
+  _ContainerPageState({required this.login}) : data = login;
 
   void _emprestarNotebook() {
     setState(() {
@@ -88,13 +101,19 @@ class _ContainerPageState extends State<ContainerPage> {
           if (index == 1) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => QRPage()),
+              MaterialPageRoute(
+                  builder: (context) => QRPage(
+                        login: login,
+                      )),
             );
           }
           if (index == 2) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ContainerPage()),
+              MaterialPageRoute(
+                  builder: (context) => ContainerPage(
+                        login: login,
+                      )),
             );
           }
         },

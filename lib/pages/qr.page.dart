@@ -4,7 +4,12 @@ import 'package:funciona/pages/login.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class QRPage extends StatelessWidget {
-  final String data = "teste";
+  LoginPage teste = new LoginPage();
+  final String data;
+  final String login;
+
+  QRPage({required this.login}) : data = login;
+
   int _currentIndex = 0;
 
   @override
@@ -37,7 +42,10 @@ class QRPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ContainerPage()),
+                    MaterialPageRoute(
+                        builder: (context) => ContainerPage(
+                              login: login,
+                            )),
                   );
                 },
                 child: Text('Container Page', style: TextStyle(fontSize: 22.5)),
@@ -73,13 +81,19 @@ class QRPage extends StatelessWidget {
           if (index == 1) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => QRPage()),
+              MaterialPageRoute(
+                  builder: (context) => QRPage(
+                        login: login,
+                      )),
             );
           }
           if (index == 2) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ContainerPage()),
+              MaterialPageRoute(
+                  builder: (context) => ContainerPage(
+                        login: login,
+                      )),
             );
           }
         },

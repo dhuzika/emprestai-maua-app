@@ -10,6 +10,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   String? _username;
+  String? get username => _username;
   String? _password;
 
   @override
@@ -69,7 +70,8 @@ class _LoginPageState extends State<LoginPage> {
                       // Implementar a lógica de login aqui
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => QRPage()),
+                        MaterialPageRoute(
+                            builder: (context) => QRPage(login: _username!)),
                       );
                     }
                   },
