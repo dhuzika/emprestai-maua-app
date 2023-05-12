@@ -1,8 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:funciona/pages/login.dart';
 import 'package:funciona/pages/qr.page.dart';
+import 'package:funciona/pages/mysql.dart';
 
 class ContainerPage extends StatefulWidget {
   int _currentIndex = 0;
@@ -17,6 +16,7 @@ class ContainerPage extends StatefulWidget {
 }
 
 class _ContainerPageState extends State<ContainerPage> {
+  var db = new Mysql();
   int _currentIndex = 0;
   bool _notebookEmprestado = false;
 
@@ -26,12 +26,20 @@ class _ContainerPageState extends State<ContainerPage> {
   _ContainerPageState({required this.login}) : data = login;
 
   void _emprestarNotebook() {
+    db.getConnection().then((conn) {
+      String sql = 'UPDATE notebook SET disponivel = true WHERE id = 1;';
+      conn.query(sql);
+    });
     setState(() {
       _notebookEmprestado = true;
     });
   }
 
   void _devolverNotebook() {
+    db.getConnection().then((conn) {
+      String sql = 'UPDATE notebook SET disponivel = false WHERE id = 1;';
+      conn.query(sql);
+    });
     setState(() {
       _notebookEmprestado = false;
     });
